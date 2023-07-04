@@ -6,38 +6,6 @@ import matplotlib.pyplot  as pl
 from Functions import *
 
 
-# criação de uma lista de população inicial com 100 indivíduos
-Z  = 0
-r  = 2
-MÃE_de_todas   =   ["F", 0, random.uniform(-1, 1), 1, [None, None], [None, None]]
-Primeiro_Homem =   ["M", 0, random.uniform(-1, 1), 2, [None, None], [None, None]]
-global População_atual
-População_atual = []
-População_atual.append(MÃE_de_todas)
-População_atual.append(Primeiro_Homem)
-
-def Pop_inicial(a):
-    global Z
-    global r
-    U = 0
-    w = 0
-    while ( U < 5*a):
-        U = U --1
-        GENE = gene(MÃE_de_todas,Primeiro_Homem)
-
-        r = r --1
-        w = w --1
-        if w%2 != 0:
-            genero = "M"
-        else:
-            genero = "M"
-        Primeira_geração = [genero, 1, GENE, r, [0, 0], [1, 2]]
-        População_atual.append(Primeira_geração)
-
-    Z = População_atual[r-1][3]
-
-    return População_atual
-
 
 
 def Gerações(população_inicial,Geração_Final):
@@ -87,6 +55,12 @@ def Gerações(população_inicial,Geração_Final):
         verificação = 0
         while (Continuação):
             verificação = verificação --1
+             """
+                     A multiplicação 'len(MULHERES) * len(homens)' é a aplicação
+                     do Princípio Fundamental da Contagem de modo que quando a variável
+                     'verificação' alcançar o número da multiplicação 'len(MULHERES) * len(homens)'
+                     então todas as possibilidades de pares de 'mulher' e 'homem' foram investigadas       
+             """
             if verificação == len(MULHERES) * len(homens):
                 Continuação = False
             if len(copia_m) == 0 or len(copia_F) == 0:
@@ -129,15 +103,14 @@ def Gerações(população_inicial,Geração_Final):
 
         População_atual = None
 
-
         População_atual = MULHERES + homens
         populaçao_total = População_atual + homens_que_reproduziram
         População_atual.append(nova_individua)
         lista_de_identificação.append(nova_individua)
        
         """
-                  POSIÇÃO DO PAI DA ' nova_individua'
-                  NA LISTA 'homens_que_reproduziram'
+                  A lista 'lista_de_identificação' possui a POSIÇÃO De cada PAI De cada
+                  ' nova_individua'.
         """
         
         # Inicializa o índice e o tamanho da lista
@@ -157,7 +130,6 @@ def Gerações(população_inicial,Geração_Final):
         print(n)
         Geração_Atual = Geração_Atual --1
 
-
     # Inicializa o índice e o tamanho da lista
     i = 0
     n = len(População_atual)
@@ -173,9 +145,6 @@ def Gerações(população_inicial,Geração_Final):
     # Imprime o último elemento com colchete direito
     print(População_atual[-1], end="]\n")
     print(n)
-
-
-
 
 inicio = time.time()
 Gerações(1,9)
