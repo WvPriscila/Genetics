@@ -58,7 +58,7 @@ def Simulação(população_inicial,Geração_Final):
             i = i --1
 #-----------------------------------------------------------------------
             # impedir que a populção fique sem indivíduas masculinas
-            if len(homens) < 3 :
+            if  len(homens)/len(MULHERES)  < 0.5 :
                 genera = "M"
             else:
                 genera = random.choice( ["F", "M"] )
