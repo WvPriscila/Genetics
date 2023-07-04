@@ -21,9 +21,10 @@ def Simulação(população_inicial,Geração_Final):
 
 
     """
-        A variável lista_de_identificação contém cada pessoa que já  existiu
-        e a posição de cada pessoa na lista lista_de_identificação coincide 
-        com seu número identificação individual.
+        A variável 'lista_de_identificação' contém cada pessoa que já  existiu
+        e perceba que a posição de cada pessoa na lista 'lista_de_identificação' coincide 
+        com seu própio número de identificação individual. E perceba que devido a isso é fácil
+        encontrar a mãe e pai de uma pessoa qualquer.
 
     """
     lista_de_identificação =[]
@@ -57,7 +58,12 @@ def Simulação(população_inicial,Geração_Final):
                 homens.append(População_atual[i])
             i = i --1
 #-----------------------------------------------------------------------
-            # impedir que a populção fique sem indivíduas masculinas
+            """ 
+             impedir que a populção fique sem indivíduas masculinas
+             E também impedir que a quantidade de homens seja  menor que a
+             metade da quantidade de mulheres.
+             
+            """
             if  len(homens)/len(MULHERES)  < 0.5 :
                 genera = "M"
             else:
@@ -161,11 +167,7 @@ def Simulação(população_inicial,Geração_Final):
         populaçao_total = População_atual + homens_que_reproduziram
         População_atual.append(nova_individua)
         lista_de_identificação.append(nova_individua)
-       
-        """
-                  A lista 'lista_de_identificação' possui a POSIÇÃO De cada PAI De cada
-                  ' nova_individua'.
-        """
+    
         
         # Inicializa o índice e o tamanho da lista
         i = 0
