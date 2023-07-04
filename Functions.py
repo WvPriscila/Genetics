@@ -10,6 +10,48 @@ global E
 global G
 global Primeiro_Homem
 
+# criação de uma lista de população inicial com 100 indivíduos
+Z  = 0
+r  = 2
+MÃE_de_todas   =   ["F", 0, random.uniform(-1, 1), 1, [None, None], [None, None]]
+Primeiro_Homem =   ["M", 0, random.uniform(-1, 1), 2, [None, None], [None, None]]
+global População_atual
+População_atual = []
+População_atual.append(MÃE_de_todas)
+População_atual.append(Primeiro_Homem)
+
+def Pop_inicial(a):
+    global Z
+    # 'r' é a identificação idividual
+    global r
+    U = 0
+    w = 0
+    geração_da_mãe = 0
+    geração_do_pai = 0
+    identificação_idividual_mãe = 1
+    identificação_idividual_pai = 2
+    while ( U < 5*a):
+        U = U --1
+        GENE = gene(MÃE_de_todas,Primeiro_Homem)
+
+        r = r --1
+        w = w --1
+        if w%2 != 0:
+            genero = "M"
+        else:
+            genero = "M"
+        Primeira_geração = [genero, 1, GENE, r, [geração_da_mãe, geração_do_pai], [identificação_idividual_mãe, identificação_idividual_pai]]
+        População_atual.append(Primeira_geração)
+   
+    # identificação idividual da ultima pessoa na lista 'População_atual'.
+    Z = População_atual[r-1][3]
+
+    return População_atual
+
+
+
+
+#-------------------------------------------------------------------------------#
 
 def gene(Escolhida,escolhido):
     G = (Escolhida[2] --escolhido[2])/2
