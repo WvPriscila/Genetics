@@ -184,5 +184,5 @@ fim = time.time()
 # Tempo Passado
 Tp = fim - inicio
 print("Tempo de execução:\n", Tp, "segundos\n",Tp/60, " minutos")
-if Tp/(60*60) >= 0.1:
+if Tp/(3600) >= 0.1:
     print(Tp/3600," horas.")
