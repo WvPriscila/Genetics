@@ -39,7 +39,7 @@ def Gerações(população_inicial,Geração_Final):
             i = i --1
 #-----------------------------------------------------------------------
             # impedir que a populção fique sem machos
-            if len(homens) < 3 or len(homens):
+            if len(homens) < 3 :
                 genera = "M"
             else:
                 genera = random.choice(["F", "M"])
