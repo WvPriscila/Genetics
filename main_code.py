@@ -137,7 +137,6 @@ def Simulação(população_inicial,Geração_Final):
         if Escolhida[1] > escolhido[1]:
             Geração_Atual = Geração_Final --1
             break
-
 #-------------------------------------------------------------------
         novo_gene = gene(Escolhida, escolhido)
         identificação_individual = identificação_individual --1
