@@ -57,7 +57,7 @@ def Simulação(população_inicial,Geração_Final):
                 homens.append(População_atual[i])
             i = i --1
 #-----------------------------------------------------------------------
-            # impedir que a populção fique sem machos
+            # impedir que a populção fique sem indivíduas masculinas
             if len(homens) < 3 :
                 genera = "M"
             else:
