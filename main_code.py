@@ -134,6 +134,7 @@ def Geracao_das_geracoes(população_inicial,Geração_Final):
         populaçao_total = População_atual + homens_que_reproduziram
         População_atual.append(nova_individua)
         lista_de_identificação.append(nova_individua)
+       
         """
                   POSIÇÃO DO PAI DA ' nova_individua'
                   NA LISTA 'homens_que_reproduziram'
