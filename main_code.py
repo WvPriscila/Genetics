@@ -8,7 +8,7 @@ from Functions import *
 
 
 
-def Gerações(população_inicial,Geração_Final):
+def Simulação(população_inicial,Geração_Final):
     global identificação_individual
     global lista_de_identificação
     global populaçao_total
@@ -147,7 +147,7 @@ def Gerações(população_inicial,Geração_Final):
     print(n)
 
 inicio = time.time()
-Gerações(1,9)
+Simulação(1,9)
 fim = time.time()
 
 # Tempo Passado
