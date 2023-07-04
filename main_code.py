@@ -40,7 +40,7 @@ def Pop_inicial(a):
 
 
 
-def Geracao_das_geracoes(população_inicial,Geração_Final):
+def Gerações(população_inicial,Geração_Final):
     global identificação_individual
     global lista_de_identificação
     global populaçao_total
@@ -178,7 +178,7 @@ def Geracao_das_geracoes(população_inicial,Geração_Final):
 
 
 inicio = time.time()
-Geracao_das_geracoes(1,9)
+Gerações(1,9)
 fim = time.time()
 
 # Tempo Passado
