@@ -13,14 +13,21 @@ def Simulação(população_inicial,Geração_Final):
     global lista_de_identificação
     global populaçao_total
     global Geração_Atual
-    lista_de_identificação =[]
-
-    População_atual = Pop_inicial(população_inicial)
-    identificação_individual = Z
-    Geração_Atual = 0
     global MULHERES
     global homens
     global homens_que_reproduziram
+    
+    lista_de_identificação =[]
+    
+    """  
+        Aqui Cria uma a população que irá dar origem
+        a gerações posteriores
+    
+    """ 
+    População_atual = População_inicial(população_inicial)
+    identificação_individual = Z
+    Geração_Atual = 0
+   
     homens_que_reproduziram = []
 
     for i in População_atual:
