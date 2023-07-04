@@ -20,7 +20,7 @@ População_atual = []
 População_atual.append(MÃE_de_todas)
 População_atual.append(Primeiro_Homem)
 
-def Pop_inicial(a):
+def População_inicial(a):
     global Z
     # 'r' é a identificação idividual
     global r
