@@ -9,6 +9,8 @@ from Functions import *
 
 
 def Simulação(população_inicial,Geração_Final):
+    global Escolhida
+    global escolhido
     global identificação_individual
     global lista_de_identificação
     global populaçao_total
@@ -16,8 +18,18 @@ def Simulação(população_inicial,Geração_Final):
     global MULHERES
     global homens
     global homens_que_reproduziram
-    
+
+
+    """
+        A variável lista_de_identificação contém cada pessoa que já  existiu
+        e a posição de cada pessoa na lista lista_de_identificação coincide 
+        com seu número identificação individual.
+
+    """
     lista_de_identificação =[]
+    identificação_individual = Z
+    homens_que_reproduziram = []
+    Geração_Atual = 1
     
     """  
         Aqui Cria uma a população que irá dar origem
@@ -25,18 +37,18 @@ def Simulação(população_inicial,Geração_Final):
     
     """ 
     População_atual = População_inicial(população_inicial)
-    identificação_individual = Z
-    Geração_Atual = 0
-   
-    homens_que_reproduziram = []
 
     for i in População_atual:
         lista_de_identificação.append(i)
+    
+    
+    #   Aqui realmente começa a simulação.
     while (Geração_Atual < Geração_Final):
 
         MULHERES = []
         homens   = []
         i = 0
+        
         # separação de mulheres e homens
         while i < len(População_atual):
             if População_atual[i][0] == "F":
@@ -49,10 +61,9 @@ def Simulação(população_inicial,Geração_Final):
             if len(homens) < 3 :
                 genera = "M"
             else:
-                genera = random.choice(["F", "M"])
+                genera = random.choice( ["F", "M"] )
 #-------------------------------------------------------------------------
         # Escolhendo a CASAL reprodutora
-        global Escolhida
         Escolhida = random.choice(MULHERES)
       
         # copia para evitar problemas com as listas originais
@@ -63,33 +74,71 @@ def Simulação(população_inicial,Geração_Final):
         while (Continuação):
             verificação = verificação --1
              """
-                     A multiplicação 'len(MULHERES) * len(homens)' é a aplicação
+                     A multiplicação len(MULHERES) * len(homens) é a aplicação
                      do Princípio Fundamental da Contagem de modo que quando a variável
-                     'verificação' alcançar o número da multiplicação 'len(MULHERES) * len(homens)'
+                     'verificação' alcançar o número da multiplicação len(MULHERES) * len(homens)
                      então todas as possibilidades de pares de 'mulher' e 'homem' foram investigadas       
              """
             if verificação == len(MULHERES) * len(homens):
                 Continuação = False
+            """
+                 Pode ocorrer que a lista copia_m ou a lista copia_F se esgote
+                 antes de de todas as possibilidades de pares de 'mulher' e 'homem' foram investigadas
+                 então o código abaixo é para impedir isso
+                 
+            """
             if len(copia_m) == 0 or len(copia_F) == 0:
                 copia_m = homens.copy()
                 copia_F = MULHERES.copy()
                 Escolhida = random.choice(copia_F)
+                """
+                   Perceba que a remoção da Escolhida da variável copia_F não impedi 
+                   que posteriormente a mesma Escolhida seja escolhida para se reproduzir
+                   novamente, a remoção dela apenas serve para deixar o código mais rápido e
+                   otimizado.
+                
+                """
                 copia_F.remove(Escolhida)
-            global escolhido
             escolhido = random.choice(copia_m)
-            if Escolhida[1] <= escolhido[1]  :
-            else:
+            if Escolhida[1] > escolhido[1]  :
                 copia_m.remove(escolhido)
+        
         homens_que_reproduziram.append(escolhido)
+        """
+              Perceba que aqui além da remoção do escolhido deixar o código mais rápido e
+              otimizado isso também impossibilita do mesmo escolhido se reproduzir novamente 
+              após de reproduzir pela primeira vez.
+        
+        """
         homens.remove(escolhido)
         u = Verifica_antepassada_comum(Escolhida, escolhido, lista_de_identificação)
        
 #------------------------------------------------------------------
-        # determina a geração da prole do casal
+        """
+             Aqui ocorre a determinação de qual geração pertence a 
+             prole do casal usando a regra que é  aplicada se 
+             a geração da escolhida é menor que a geração do escolhido.
+        
+        """
+        
         if Escolhida[1] < escolhido[1]:
             geração_da_individua = escolhido[1] --1
-        else:
+
+        """
+             Aqui ocorre a determinação de qual geração pertence a 
+             prole do casal usando a regra que é  aplicada se 
+             a geração da escolhida é igual que a geração do escolhido.           
+        
+        """
+        
+        if Escolhida[1] == escolhido[1]:
             geração_da_individua = Escolhida[1] --1
+
+        if Escolhida[1] > escolhido[1]:
+            Geração_Atual = Geração_Final --1
+            break
+            return print(" Reprodução impedida. " )
+
 #-------------------------------------------------------------------
         novo_gene = gene(Escolhida, escolhido)
         identificação_individual = identificação_individual --1
