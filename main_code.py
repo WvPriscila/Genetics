@@ -6,8 +6,6 @@ import matplotlib.pyplot  as pl
 from Functions import *
 
 
-
-
 def Simulação(população_inicial,Geração_Final):
     global Escolhida
     global escolhido
