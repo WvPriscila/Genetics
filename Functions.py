@@ -29,7 +29,6 @@ consideravelmente menor em tamanho em comparação com o cromossomo 'X' e conté
 Em média, o cromossomo 'Y' humano contém cerca de 59 milhões de pares de bases, enquanto o cromossomo 'X' humano contém cerca de 155 milhões
 de pares de bases. Isso significa que as mulheres têm, em média, um  mais de pares de bases de DNA do que os homens.
 
-
 A maioria das informações genéticas importantes para a função e o desenvolvimento ocorre nos cromossomos  'autossomos', que são 
 semelhantes entre homens e mulheres. É importante ressaltar que, apesar da diferença no tamanho dos cromossomos de gênero, ambos os  gêneroa 
 humanos compartilham a maioria do genoma, com variações adicionais concentradas principalmente nos cromossomos de gênero.
