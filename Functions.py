@@ -4,15 +4,62 @@ import matplotlib.pyplot  as pl
 
 
 
+"""
+O DNA é como um livro de receitas que está dentro do nosso corpo.
+Esse livro contém todas as informações sobre como nosso corpo deve
+ser construído e como funcionam nossas características, como cor dos olhos, tipo de cabelo, etc.
+
+Às vezes, quando o nosso corpo está fazendo cópias desse livro de receitas, podem ocorrer pequenos erros
+chamados mutações. Esses erros são como letras que são escritas erradas em uma palavra no livro.
+
+No caso dos seres humanos, estudos sugerem que esses erros acontecem aproximadamente a cada 100 a 300 milhões de
+"letras" do nosso livro de receitas a cada geração. Isso significa que, em cada geração, algumas das informações
+podem mudar um pouquinho por causa dessas mutações.
+
+Essas mudanças são naturais e fazem parte  das espécies. Na maioria das vezes, elas não causam grandes 
+problemas e não são percebidas. Às vezes, porém, essas mutações podem levar a diferenças nas características das 
+pessoas, como uma altura um pouco diferente ou alguma habilidade especial.
+
+Portanto, as mutações cromossômicas são como pequenos erros que acontecem quando nosso corpo faz cópias do nosso livro de receitas,
+o DNA. Esses erros acontecem muito raramente, a cada 100 a 300 milhões de "letras" do DNA, mas são parte natural  da espécie.
+
+No genoma humano, as mulheres têm dois cromossomos de gênero 'X', enquanto os homens têm um cromossomo 'X' e um cromossomo 'Y' . O cromossomo 'Y' é 
+consideravelmente menor em tamanho em comparação com o cromossomo 'X' e contém menos pares de bases de DNA.
+
+Em média, o cromossomo 'Y' humano contém cerca de 59 milhões de pares de bases, enquanto o cromossomo 'X' humano contém cerca de 155 milhões
+de pares de bases. Isso significa que as mulheres têm, em média, um  mais de pares de bases de DNA do que os homens.
+
+
+A maioria das informações genéticas importantes para a função e o desenvolvimento ocorre nos cromossomos  'autossomos', que são 
+semelhantes entre homens e mulheres. É importante ressaltar que, apesar da diferença no tamanho dos cromossomos de gênero, ambos os  gêneroa 
+humanos compartilham a maioria do genoma, com variações adicionais concentradas principalmente nos cromossomos de gênero.
+
+então espara-se poder dizer que a taxa média de mutação de  pares de bases em relação a quantidade total de  pares de bases
+é aproximadamente 300/3155 algo próximo de 9.5% de uma geração para a outra.
+
+então se simularmos um cromossomo de 1000  pares de bases haveria uma mutação de aproximadamente 95 pares de bases em média.
+
+"""
 global MÃE_de_todas
 global novo_gene
 global E
 global G
 global Primeiro_Homem
 
-# criação de uma lista de população inicial com 100 indivíduos
 Z  = 0
+"""
+'r' é a  variável que armazena a identificação idividual e 'r' inicia-se em 2 pois já 
+há duas indivíduas na populção uma   indivídua que possui identificação idividual igual
+à 1 e outra que possui identificação idividual igual à 2.
+
+"""
 r  = 2
+"""
+ Perceba que 'MÃE_de_todas' e 'Primeiro_Homem' possuem None onde fica a geração de sua mães e de seus pais
+ e possuem None onde fica identificação idividual de sua mães e de seus pais pois 'MÃE_de_todas' e 'Primeiro_Homem'
+ são as primeiras pessoas da população
+
+"""
 MÃE_de_todas   =   ["F", 0, random.uniform(-1, 1), 1, [None, None], [None, None]]
 Primeiro_Homem =   ["M", 0, random.uniform(-1, 1), 2, [None, None], [None, None]]
 global População_atual
@@ -22,7 +69,6 @@ População_atual.append(Primeiro_Homem)
 
 def População_inicial(a):
     global Z
-    # 'r' é a identificação idividual
     global r
     U = 0
     w = 0
@@ -48,18 +94,15 @@ def População_inicial(a):
 
     return População_atual
 
-
-
-
 #-------------------------------------------------------------------------------#
 
-def gene(Escolhida,escolhido):
-    G = (Escolhida[2] --escolhido[2])/2
+def Mutação(Escolhida,escolhido):
+    G = (Escolhida[1] -- escolhido[1])/2
     E = random.uniform(-1, 1)
-    novo_gene = G - (G / E)
-    if novo_gene < -1 or novo_gene > 1:
-        novo_gene = sin(radians(novo_gene))
-    return novo_gene
+    nova_mutação = G - (G / E)
+    if nova_mutação < -1 or nova_mutação > 1:
+        nova_mutação = sin(radians(nova_mutação))
+    return nova_mutação
 
 #-------------------------------------------------------------------------------#
 
