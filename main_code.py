@@ -48,9 +48,9 @@ def Simulação(população_inicial,Geração_Final):
 
         MULHERES = []
         homens   = []
-        i = 0
         
         # separação de mulheres e homens
+        i = 0
         while i < len(População_atual):
             if População_atual[i][0] == "F":
                 MULHERES.append(População_atual[i])
@@ -93,8 +93,7 @@ def Simulação(população_inicial,Geração_Final):
                  então o código abaixo é para impedir isso
                  
             """
-            if len(copia_m) == 0 or len(copia_F) == 0:
-                copia_m = homens.copy()
+            if len(copia_F) == 0: 
                 copia_F = MULHERES.copy()
                 Escolhida = random.choice(copia_F)
                 """
@@ -106,7 +105,12 @@ def Simulação(população_inicial,Geração_Final):
                 """
                 copia_F.remove(Escolhida)
             escolhido = random.choice(copia_m)
-            if Escolhida[1] > escolhido[1]  :
+            
+            if len(copia_m)  == 0:
+                copia_m = homens.copy()
+
+            
+            if Escolhida[1] > escolhido[1]:
                 copia_m.remove(escolhido)
         
         homens_que_reproduziram.append(escolhido)
