@@ -210,6 +210,6 @@ fim = time.time()
 
 # Tempo Passado
 Tp = fim - inicio
-print("Tempo de execução:\n", Tp, "segundos\n",Tp/60, " minutos")
+print("Tempo que o Tradutor levou  realizar o algoritmo:\n", Tp, "segundos\n",Tp/60, " minutos")
 if Tp/(3600) >= 0.1:
     print(Tp/3600," horas.")
