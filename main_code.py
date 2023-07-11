@@ -17,7 +17,6 @@ def Simulação(população_inicial,Geração_Final):
     global homens
     global homens_que_reproduziram
 
-
     """
         A variável 'lista_de_identificação' contém cada pessoa que já  existiu
         e perceba que a posição de cada pessoa na lista 'lista_de_identificação' coincide 
