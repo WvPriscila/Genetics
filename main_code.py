@@ -5,7 +5,7 @@ import time
 import matplotlib.pyplot  as pl
 from Functions import *
 
-
+# Função Principal
 def Simulação(população_inicial,Geração_Final):
     global Escolhida
     global escolhido
