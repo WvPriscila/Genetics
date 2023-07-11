@@ -15,26 +15,26 @@
 
 
 """    
-      O Dna de cada pessoa possui 3 pares de Cromossomos
+      O Dna de cada pessoa possui 4 pares de Cromossomos
 
      # O primeiro Par de Cromossomos é chamado de    'Par A'
      # O segundo Par de Cromossomos é chamado de     'Par B'
      # O Terceiro Par de Cromossomos é chamado de    'Par C'
-
-     O Par A determina o gênero da pessoa
-     O Par B determina as Características físicas e psicologicas
-     O Par C determina  as regras de reprodução e como e quais características seram passadas para geração seguinte
-
-     Cada pessoa herda 3 Cromossomos da mãe  e  3 cromossomos do pai, formando assim 3 pares de Cromossomos nessa pessoa      
+     # O quarto  Par de Cromossomos é chamado de     'Par D'
      
-     # Os mecanismos que criam  variância nos Dna para ser herdado por alguém  da próxima geração ocorre apenas através das mulheres 
-"""
+     O Par A determina o gênero da pessoa.
+     O Par B determina as Características físicas e psicologicas.
+     O Par C determina  as regras de reprodução e como e quais características seram passadas para geração seguinte.
+     O Par D determina o quanto e como cada cromossomo pode mudar.
 
+     Cada pessoa herda 4 Cromossomos da mãe  e  4 cromossomos do pai, formando assim 4 pares de Cromossomos nessa pessoa.      
+     
+     # Os mecanismos que criam  variância no Dna para ser herdado na próxima geração ocorre apenas através das mulheres. 
+"""
 
 
 """
     O algoritmo  reproduz  seguindo as seguintes regras:
-
     
     # Um homem não pode se reproduzir com alguém que seja seu ou sua descendente.
     # Uma pessoa não pode se reproduzir com uma pessoa que seja parente de sangue de seu pai e não importa a magnitude do parentesco, se há parentesco com 
