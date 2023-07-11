@@ -69,6 +69,33 @@ def Mutação(Escolhida,escolhido):
 
 #-------------------------------------------------------------------------------#
 
+def Dna(v):
+    B   = [0,1,2,3]
+    # Par de cromossomos .
+    A1 = []
+    A2 = []
+    for i in range(4):
+        A1.append([])
+        A2.append([])
+    for i in A1:
+        for p in range(v):
+            n = random.choice(B)
+            i.append(n)
+    for i in range(len(A1)):
+        for p in range(3):
+            u = A1[i][p]            
+            if u == 0:
+                A2[i].append(3)
+            if u == 1:
+                A2[i].append(2)
+            if u == 2:
+                A2[i].append(1)
+            if u == 3:
+                A2[i].append(0)
+    return A1, A2 
+
+#-------------------------------------------------------------------------------#
+
 def Verifica_antepassada_comum(Escolhida,escolhido,lista_de_identificação):
 
     geração_anterior_Escolhida = [Escolhida[5][0], Escolhida[5][1]] # ['gnr',G,Dna,id,[ g_F, g_M ], [ id_F, id_M ]]
