@@ -23,8 +23,8 @@ r  = 2
  são as primeiras pessoas da população
 
 """
-MÃE_de_todas   =   ["F", 0, random.uniform(-1, 1), 1, [None, None], [None, None]]
-Primeiro_Homem =   ["M", 0, random.uniform(-1, 1), 2, [None, None], [None, None]]
+MÃE_de_todas   =   ["F", 0, ["P1",dna], 1, [None, None], [None, None],]
+Primeiro_Homem =   ["M", 0, random.uniform(-1, 1), 2, [None, None], [None, None],]
 global População_atual
 População_atual = []
 População_atual.append(MÃE_de_todas)
@@ -57,36 +57,12 @@ def População_inicial(a):
 
     return População_atual
 
-#-------------------------------------------------------------------------------#
- def População_Ma_A():
 
-
-
-#-------------------------------------------------------------------------------#
- 
-  def População_Ma_B():
-
-
-   
-#-------------------------------------------------------------------------------#
-
-  def População_Mb_A():
-
-  
-  #-------------------------------------------------------------------------------#
-
-  
-  def População_Mb_B():
-
- 
-
-#-------------------------------------------------------------------------------#
 
 
  
 
  #-------------------------------------------------------------------------------#
-
 
 
 #-------------------------------------------------------------------------------#
@@ -182,6 +158,3 @@ def Verifica_antepassada_comum(Escolhida,escolhido,lista_de_identificação):
             geração_anterior_escolhido.append(i[5][1])
         antepassado_em_comum = set(geração_anterior_Escolhida) & set(geração_anterior_escolhido)
         return Critério
-
-
-
