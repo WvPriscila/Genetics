@@ -46,3 +46,17 @@
     # Na população não há pessoas que descendam de um mesmo pai, com execeção de pessoas gêmeas.
     
 """
+
+"""
+
+Se você tem um arquivo de texto com 60000000 vezes 1000000 caracteres, teríamos um total de 60 bilhões de caracteres.
+Vamos supor que cada caractere ocupe 1 byte (8 bits) em seu arquivo de texto. Portanto, o tamanho total em bytes seria igual a 60 bilhões de bytes.
+Para converter bytes em gigabytes, usamos a seguinte fórmula:
+Tamanho em gigabytes = Tamanho em bytes / (1024 * 1024 * 1024)
+Aplicando essa fórmula ao tamanho em bytes que obtivemos, temos:
+Tamanho em gigabytes = 60 bilhões de bytes / (1024 * 1024 * 1024)
+Agora, vamos calcular:
+60 bilhões de bytes ≈ 55.9 gigabytes (GB)
+Portanto, 60000000 vezes 1000000 caracteres em um arquivo de texto ocupariam aproximadamente 55.9 gigabytes (GB).
+
+"""
