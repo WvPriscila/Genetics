@@ -48,6 +48,11 @@
 """
 
 """
+Cada pessoa possuirá no 'Par B'  ( 60000000 * 1000000)/2  pares de bases de DNA.
+
+"""
+
+"""
 
 Se você tem um arquivo de texto com 60000000 vezes 1000000 caracteres, teríamos um total de 60 bilhões de caracteres.
 Vamos supor que cada caractere ocupe 1 byte (8 bits) em seu arquivo de texto. Portanto, o tamanho total em bytes seria igual a 60 bilhões de bytes.
