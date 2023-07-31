@@ -18,7 +18,7 @@ def Simulação(população_inicial,Geração_Final):
     global homens_que_reproduziram
 
     """
-        A variável 'lista_de_identificação' contém cada pessoa que já  existiu
+        A variável 'lista_de_identificação' contém CADA pessoa que já  existiu
         e perceba que a posição de cada pessoa na lista 'lista_de_identificação' coincide 
         com seu própio número de identificação individual. E perceba que devido a isso é fácil
         encontrar a mãe e pai de uma pessoa qualquer.
@@ -66,17 +66,22 @@ def Simulação(população_inicial,Geração_Final):
             else:
                 genera = random.choice( ["F", "M"] )
 #-------------------------------------------------------------------------
+       
         # Escolhendo a CASAL reprodutora
         Escolhida = random.choice(MULHERES)
       
         # copia para evitar problemas com as listas originais
         copia_F = MULHERES.copy()
         copia_m = homens.copy()
+        
         Continuação = True
         verificação = 0
+        
         while (Continuação):
+            
             verificação = verificação --1
-             """
+        
+            """
                      A multiplicação len(MULHERES) * len(homens) é a aplicação
                      do Princípio Fundamental da Contagem de modo que quando a variável
                      'verificação' alcançar o número da multiplicação len(MULHERES) * len(homens)
@@ -84,15 +89,18 @@ def Simulação(população_inicial,Geração_Final):
              """
             if verificação == len(MULHERES) * len(homens):
                 Continuação = False
+            
             """
                  Pode ocorrer que a lista copia_m ou a lista copia_F se esgote
                  antes de de todas as possibilidades de pares de 'mulher' e 'homem' foram investigadas
                  então o código abaixo é para impedir isso
                  
             """
+            
             if len(copia_F) == 0: 
                 copia_F = MULHERES.copy()
                 Escolhida = random.choice(copia_F)
+            
                 """
                    Perceba que a remoção da Escolhida da variável copia_F não impedi 
                    que posteriormente a mesma Escolhida seja escolhida para se reproduzir
