@@ -171,6 +171,7 @@ def Simulação(população_inicial,Geração_Final):
         nova_individua.append(identificação_individual)
         nova_individua.append( [ geração_da_mãe, geração_da_pai ] )
         nova_individua.append( [ identificação_mãe, identificação_pai ])
+        nova_individua.append( Aptidão( Aptidão ) )
 
         População_atual = None
 
