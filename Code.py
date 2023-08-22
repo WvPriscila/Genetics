@@ -56,7 +56,7 @@ def Simulação(população_inicial,Geração_Final):
             else:
                 homens.append(População_atual[i])
             i = i --1
-#-----------------------------------------------------------------------
+#-----------------------------------------------------------------------#
             """ 
              impedir que a populção fique sem indivíduas masculinas
              E também impedir que a quantidade de homens seja  menor que a
@@ -67,7 +67,7 @@ def Simulação(população_inicial,Geração_Final):
                 genera = "M"
             else:
                 genera = random.choice( ["F", "M"] )
-#-------------------------------------------------------------------------
+#-------------------------------------------------------------------------#
        
         # Escolhendo a CASAL reprodutora
         Escolhida = random.choice(MULHERES)
@@ -130,7 +130,7 @@ def Simulação(população_inicial,Geração_Final):
         homens.remove(escolhido)
         u = Verifica_antepassada_comum(Escolhida, escolhido, lista_de_identificação)
        
-#------------------------------------------------------------------
+#------------------------------------------------------------------#
         """
              Aqui ocorre a determinação de qual geração pertence a 
              prole do casal usando a regra que é  aplicada se 
@@ -154,8 +154,8 @@ def Simulação(população_inicial,Geração_Final):
         if Escolhida[1] > escolhido[1]:
             Geração_Atual = Geração_Final --1
             break
-#-------------------------------------------------------------------
-        novo_gene = gene(Escolhida, escolhido)
+#-------------------------------------------------------------------#
+        Nova_DNA = Reprodução(Escolhida, escolhido)
         identificação_individual = identificação_individual --1
 
         geração_da_mãe    = Escolhida[1]
@@ -167,7 +167,7 @@ def Simulação(população_inicial,Geração_Final):
         nova_individua = []
         nova_individua.append(genera )
         nova_individua.append( geração_da_individua )
-        nova_individua.append(novo_gene)
+        nova_individua.append(Nova_DNA)
         nova_individua.append(identificação_individual)
         nova_individua.append( [ geração_da_mãe, geração_da_pai ] )
         nova_individua.append( [ identificação_mãe, identificação_pai ])
@@ -177,6 +177,11 @@ def Simulação(população_inicial,Geração_Final):
         População_atual = MULHERES + homens
         populaçao_total = População_atual + homens_que_reproduziram
         População_atual.append(nova_individua)
+        
+        """ 
+             Cada indivídua está ordenada nessa lista de acordo com sua indentificação individual
+             de modo que se a indentificação individual de uma individua for  'n' então sua posição na lista é 'n-1'.
+        """
         lista_de_identificação.append(nova_individua)
     
         
