@@ -1,9 +1,11 @@
-
+import time
+from decimal import Decimal
 from math import *
 import random
-import time
 import matplotlib.pyplot  as pl
 from Functions import *
+import sys 
+
 
 # Função Principal
 def Simulação(população_inicial,Geração_Final):
