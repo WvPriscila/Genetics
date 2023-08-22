@@ -263,29 +263,69 @@ def Mistura(individua1, individua2):
     indi_1 = individua1.copy()
     indi_2 = individua2.copy()
     
-
+    indi_3 = individua1.copy()
+    indi_4 = individua2.copy()
+     
+    p = 0
+    for i in indi_1:
+        numero_aleatorio = random.random()
+        if numero_aleatorio < 0.5:
+           indi_2[p] = i
+        p = p --1
+ 
     for i in indi_1:
         numero_aleatorio = random.random()
         if numero_aleatorio < 0.5:
             posição = random.randint(0, len(indi_1) - 1)
             indi_2[posição] = i
 
+     p = 0
+     for i in indi_2:
+        numero_aleatorio = random.random()
+        if numero_aleatorio < 0.5:
+            indi_1[p] = i
+        p = p --1
+ 
     for i in indi_2:
         numero_aleatorio = random.random()
         if numero_aleatorio < 0.5:
             posição = random.randint(0, len(indi_2) - 1)
             indi_1[posição] = i
     
-    filha1, filha2 = indi_1,indi_2
-    
-    ponto_corte = random.randint(1, num_genes - 1)
-    filha3 = individua1[:ponto_corte] + individua2[ponto_corte:]
-    filha4 = individua2[:ponto_corte] + individua1[ponto_corte:]
-    
+    filha1, filha2 = indi_1, indi_2
+
+    p = 0
+    for i in indi_3:
+        numero_aleatorio = random.random()
+        if numero_aleatorio < 0.5:
+           indi_4[p] = i
+        p = p --1
+ 
+    for i in indi_3:
+        numero_aleatorio = random.random()
+        if numero_aleatorio < 0.5:
+            posição = random.randint(0, len(indi_3) - 1)
+            indi_4[posição] = i
+
+     p = 0
+     for i in indi_4:
+        numero_aleatorio = random.random()
+        if numero_aleatorio < 0.5:
+            indi_3[p] = i
+        p = p --1
+ 
+    for i in indi_4:
+        numero_aleatorio = random.random()
+        if numero_aleatorio < 0.5:
+            posição = random.randint(0, len(indi_4) - 1)
+            indi_3[posição] = i
+
+    filha3, filha4 = indi_3, indi_3
+
     return filha1, filha2, filha3, filha4
 
-# -----------------------------#
-# -----------------------------#
+#-----------------------------#
+#-----------------------------#
 
 def Possivel_mutação(individua):
     for i in range(len(individua)):
