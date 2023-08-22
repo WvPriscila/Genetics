@@ -43,8 +43,14 @@ r  = 2
  são as primeiras pessoas da população
 
 """
-MÃE_de_todas   =   ["F", 0, [random.randint(0, 9) for i in range(num_genes)] , 1, [None, None], [None, None],]
-Primeiro_Homem =   ["M", 0, [random.randint(0, 9) for i in range(num_genes)] , 2, [None, None], [None, None],]
+
+DNA_mãe = [random.randint(0, 9) for i in range(num_genes)] 
+DNA_pai = [random.randint(0, 9) for i in range(num_genes)]
+Aptidão_mãe = 
+Aptidão_pai = 
+
+MÃE_de_todas   =   ["F", 0, DNA_mãe , 1, [None, None], [None, None],Aptidão(Aptidão_mãe)]
+Primeiro_Homem =   ["M", 0, DNA_pai , 2, [None, None], [None, None],Aptidão(Aptidão_pai)]
 global População_atual
 População_atual = []
 População_atual.append(MÃE_de_todas)
@@ -69,7 +75,7 @@ def População_inicial(a):
             genero = "M"
         else:
             genero = "M"
-        Primeira_geração = [genero, 1, DNA , r, [geração_da_mãe, geração_do_pai], [identificação_idividual_mãe, identificação_idividual_pai]]
+        Primeira_geração = [genero, 1, DNA , r, [geração_da_mãe, geração_do_pai], [identificação_idividual_mãe, identificação_idividual_pai],Aptidão(DNA)]
         População_atual.append(Primeira_geração)
    
     # identificação idividual da ultima pessoa na lista 'População_atual'.
