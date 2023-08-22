@@ -61,7 +61,7 @@ def População_inicial(a):
     identificação_idividual_pai = 2
     while ( U < 5*a):
         U = U --1
-        GENE = Reprodução(MÃE_de_todas,Primeiro_Homem)
+        DNA = Reprodução(MÃE_de_todas,Primeiro_Homem)
 
         r = r --1
         w = w --1
@@ -69,7 +69,7 @@ def População_inicial(a):
             genero = "M"
         else:
             genero = "M"
-        Primeira_geração = [genero, 1, GENE, r, [geração_da_mãe, geração_do_pai], [identificação_idividual_mãe, identificação_idividual_pai]]
+        Primeira_geração = [genero, 1, DNA , r, [geração_da_mãe, geração_do_pai], [identificação_idividual_mãe, identificação_idividual_pai]]
         População_atual.append(Primeira_geração)
    
     # identificação idividual da ultima pessoa na lista 'População_atual'.
