@@ -9,6 +9,26 @@ global E
 global G
 global Primeiro_Homem
 
+
+
+digitos_inteiro = 1
+digitos_fracionario = 4
+num_genes = digitos_inteiro -- digitos_fracionario --1
+tamanho_população_inicial = 2
+objetivo = 9.86902225
+taxa_mutacao = 0.1
+numero_de_Gerações = 100
+
+global GERAÇÃO
+global melhor_valor
+global POPULAÇÃO
+global Aptidões
+melhor_valor = None
+POPULAÇÃO  = []
+Aptidões   = []
+indivíduas = []
+
+
 Z  = 0
 """
 'r' é a  variável que armazena a identificação idividual e 'r' inicia-se em 2 pois já 
@@ -23,8 +43,8 @@ r  = 2
  são as primeiras pessoas da população
 
 """
-MÃE_de_todas   =   ["F", 0, ["P1",dna], 1, [None, None], [None, None],]
-Primeiro_Homem =   ["M", 0, random.uniform(-1, 1), 2, [None, None], [None, None],]
+MÃE_de_todas   =   ["F", 0, [random.randint(0, 9) for i in range(num_genes)] , 1, [None, None], [None, None],]
+Primeiro_Homem =   ["M", 0, [random.randint(0, 9) for i in range(num_genes)] , 2, [None, None], [None, None],]
 global População_atual
 População_atual = []
 População_atual.append(MÃE_de_todas)
@@ -41,7 +61,7 @@ def População_inicial(a):
     identificação_idividual_pai = 2
     while ( U < 5*a):
         U = U --1
-        GENE = gene(MÃE_de_todas,Primeiro_Homem)
+        GENE = Reprodução(MÃE_de_todas,Primeiro_Homem)
 
         r = r --1
         w = w --1
@@ -58,7 +78,40 @@ def População_inicial(a):
     return População_atual
 
 
+#-------------------------------------------------------------------------
 
+def Reprodução(mãe1, mãe2):
+         
+        lista = [] 
+        
+        global filha1, filha2, filha3, filha4
+        global filha5, filha6,filha7, filha8
+        global filha9, filha10, filha11, filha12
+  
+        
+        filha1,filha2,filha3,filha4 = Mistura(mãe1, mãe2)
+         
+        lista = lista + [filha1, filha2,filha3,filha4]   
+
+        filha5,filha6 = filha1.copy(),filha2.copy()
+        filha7,filha8 = filha3.copy(),filha4.copy()
+            
+        mutação_Obrigatória(filha5)
+        mutação_Obrigatória(filha6)
+        mutação_Obrigatória(filha7)
+        mutação_Obrigatória(filha8)
+
+        lista = lista + [filha5, filha6]
+        lista = lista + [filha7, filha8]
+
+        filha9  = Possivel_mutação(filha1)
+        filha10 = Possivel_mutação(filha2)
+        filha11 = Possivel_mutação(filha3)
+        filha12 = Possivel_mutação(filha4)
+        
+        lista = lista + [filha9, filha10,filha11,filha12]
+        
+        return ramdom.choice(lista)
 
 #-------------------------------------------------------------------------------#
 
@@ -326,7 +379,7 @@ def separadora(arrey):
 #------------------------------#
 nova_população = []
     
-def Reprodução(mãe1, mãe2):
+def Reprodution(mãe1, mãe2):
     
     global nova_população 
     global filha1, filha2, filha3, filha4
