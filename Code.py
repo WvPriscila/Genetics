@@ -45,6 +45,8 @@ def Simulação(população_inicial,Geração_Final):
     #   Aqui realmente começa a simulação.
     while (Geração_Atual < Geração_Final):
 
+#-----------------------------------------------------------------------#
+#-----------------------------------------------------------------------#
         MULHERES = []
         homens   = []
         
@@ -57,6 +59,7 @@ def Simulação(população_inicial,Geração_Final):
                 homens.append(População_atual[i])
             i = i --1
 #-----------------------------------------------------------------------#
+#-----------------------------------------------------------------------#
             """ 
              impedir que a populção fique sem indivíduas masculinas
              E também impedir que a quantidade de homens seja  menor que a
@@ -68,6 +71,7 @@ def Simulação(população_inicial,Geração_Final):
             else:
                 genera = random.choice( ["F", "M"] )
 #-------------------------------------------------------------------------#
+#-----------------------------------------------------------------------#
        
         # Escolhendo a CASAL reprodutora
         Escolhida = random.choice(MULHERES)
@@ -130,6 +134,7 @@ def Simulação(população_inicial,Geração_Final):
         homens.remove(escolhido)
         u = Verifica_antepassada_comum(Escolhida, escolhido, lista_de_identificação)
        
+#------------------------------------------------------------------#
 #------------------------------------------------------------------#
         """
              Aqui ocorre a determinação de qual geração pertence a 
