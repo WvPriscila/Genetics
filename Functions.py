@@ -15,17 +15,11 @@ digitos_inteiro = 1
 digitos_fracionario = 4
 num_genes = digitos_inteiro -- digitos_fracionario --1
 tamanho_população_inicial = 2
-objetivo = 9.86902225
 taxa_mutacao = 0.1
-numero_de_Gerações = 100
 
 global GERAÇÃO
-global melhor_valor
 global POPULAÇÃO
-global Aptidões
-melhor_valor = None
 POPULAÇÃO  = []
-Aptidões   = []
 indivíduas = []
 
 
@@ -84,6 +78,7 @@ def População_inicial(a):
     return População_atual
 
 
+#-------------------------------------------------------------------------------#
 #-------------------------------------------------------------------------------#
 
 # mãe1, mãe2,ponto_corte
@@ -156,17 +151,7 @@ def Reprodução(arrey):
       if len(arrey) < 3:
 
 
-#-------------------------------------------------------------------------------#
-#-------------------------------------------------------------------------------#
 
-
-def Mutação(Escolhida,escolhido):
-    G = (Escolhida[1] -- escolhido[1])/2
-    E = random.uniform(-1, 1)
-    nova_mutação = G - (G / E)
-    if nova_mutação < -1 or nova_mutação > 1:
-        nova_mutação = sin(radians(nova_mutação))
-    return nova_mutação
 
 #-------------------------------------------------------------------------------#
 #-------------------------------------------------------------------------------#
@@ -195,6 +180,7 @@ def Dna(v):
                 A2[i].append(0)
     return A1, A2 
 
+#-------------------------------------------------------------------------------#
 #-------------------------------------------------------------------------------#
 
 def Verifica_antepassada_comum(Escolhida,escolhido,lista_de_identificação):
@@ -259,41 +245,6 @@ def inicializar_populacao():
         individua = [random.randint(0, 9) for i in range(num_genes)]
         POPULAÇÃO.append(individua)
     return POPULAÇÃO
-
-# -----------------------------#
-# -----------------------------#
-
-
-def Unir_digitos(lista):
-    A = ''
-    #print("lista",lista)
-    sinal = int(lista[0])
-    for i in lista:
-        i = str(i)
-        A = A + i
-   
-    B = f"{A[1:digitos_inteiro + 1]}.{A[digitos_inteiro + 1:]}"
-
-    número = (-1) ** sinal *Decimal(B)
-    return número
-
-#-----------------------------#
-#-----------------------------#
-
-
-# Função de Aptidão
-def Aptidão(individua):
-    
-    x = Unir_digitos(individua)
-    
-    valor = Decimal(  x ** 1 )
-    
-    aptidao =  valor - Decimal(objetivo)   
-    
-    if  aptidao < 0:
-        aptidao = -aptidao
-    
-    return Decimal(aptidao/Decimal(1E-9))
     
 # -----------------------------#
 # -----------------------------#
@@ -424,190 +375,6 @@ def mutação_Obrigatória(individua):
 # -----------------------------#
 
 
-def seleção(populção):
-    total_aptidão = calcular_total_aptidao(populção)
-    escolhido = random.uniform(0, float(total_aptidão))  # Convertendo para float
-    acumulado = 0
-
-    for individuo in populção:
-        aptidão_individuo = Aptidão(individuo)
-        acumulado += aptidão_individuo
-
-        if acumulado >= escolhido:
-            return individuo
-
-def seleção_B(populção):
-    total_aptidão = calcular_total_aptidao(populção)
-    escolhido = random.uniform(0, float(total_aptidão))  # Convertendo para float
-    acumulado = 0
-
-    for individuo in populção:
-        aptidão_individuo = Aptidão(individuo)
-        acumulado -= aptidão_individuo
-
-        if acumulado <= escolhido:
-            return individuo
-
-
-
-
-
-def seleção_media(população):
-    aptidões = [Decimal(Aptidão(indivíduo)) for indivíduo in população]
-    
-    total_aptidão = Decimal(0)
-    for individua in aptidões:
-        total_aptidão += Decimal(individua)
-    
-    média_aptidão = total_aptidão /Decimal( len(aptidões))
-    
-
-
-    # Calcula a diferença entre a aptidão do indivíduo e a média
- 
-     
-    diferenças = [ 
-                   
-                   Decimal(aptidão) - Decimal(média_aptidão) for aptidão in aptidões
-                 
-                 ]
-    
-    for i in range(len(diferenças)):
-        if diferenças[i] < 0:
-            diferenças[i] = -diferenças[i]
-
-    for i in diferenças:
-        if i <0:
-            print("i",i)
-    
-    # Calcula o total das diferenças para normalização
-
-    total_diferenças = Decimal(0)
-    for diferenca in diferenças:
-        total_diferenças += Decimal(diferenca)
-
-
-    #print("total_diferenças",total_diferenças)
-    
-    # Calcula as probabilidades normalizadas com base nas diferenças
-    probabilidades = [dif / total_diferenças for dif in diferenças]
-    
-    # Gera um valor aleatório entre 0 e 1 para a seleção
-    escolhido = Decimal(random.uniform(0, 1))
-    
-    # Percorre a lista de probabilidades acumuladas para escolher um indivíduo
-    acumulado = 0
-    for i, prob in enumerate(probabilidades):
-        acumulado += prob
-        if acumulado >= escolhido:
-            return população[i]
-            
-def seleção_media_B(população):
-    aptidões = [Aptidão(indivíduo) for indivíduo in população]
-   
-    total = Decimal(0)
-    for i in aptidões:
-        total += Decimal(i)
-
-    média_aptidão = total / len(aptidões)
-    
-     # Calcula a diferença entre a aptidão do indivíduo e a média
-    diferenças = [ 
-                   
-                   Decimal(aptidão) - Decimal(média_aptidão) for aptidão in aptidões
-                 
-                 ]
-    for i in range(len(diferenças)):
-        if diferenças[i] < 0:
-            diferenças[i] = -diferenças[i]
-    
-    # Calcula o total das diferenças para normalização
-    total_diferenças = Decimal(0)
-    for diferenca in diferenças:
-        total_diferenças += Decimal(diferenca)
-    
-    # Calcula as probabilidades normalizadas com base nas diferenças
-    probabilidades = [dif / total_diferenças for dif in diferenças]
-    
-    # Gera um valor aleatório entre 0 e 1 para a seleção
-    escolhido = random.uniform(0, 1)
-    
-    # Percorre a lista de probabilidades acumuladas para escolher um indivíduo
-    acumulado = 0
-    for i, prob in enumerate(probabilidades):
-        acumulado -= prob
-        if acumulado <= escolhido:
-            return população[i]
-
-
-# -----------------------------#
-# -----------------------------#
-
-
-def minima(Z):
-    Z = POPULAÇÃO
-    for i in range(len(POPULAÇÃO)):
-        ind = (Unir_digitos(POPULAÇÃO[i]))
-        individuas.append(ind)
-        A = Aptidão(ind)
-        Aptidão.appen(A)
-#-----------------------------#
-# -----------------------------#
-def encontrar_menor_valor(lista):
-    if not lista:  # Se a lista estiver vazia
-        return None
-
-    menor = lista[0]  # Inicializa com o primeiro valor da lista
-
-    for valor in lista:
-        if valor < menor:
-            menor = valor
-
-    return menor
-
-def encontrar_menor_elemento(lista):
-    menor = lista[0]
-    for elemento in lista:
-        if elemento < menor:
-            menor = elemento
-    return menor
-
- #------------------------------#
-
-
-def encontrar_maior_elemento(lista):
-    maior = lista[0]
-    for elemento in lista:
-        if elemento > maior:
-            maior = elemento
-    return maior
-
-def ordenacao_decrescente(lista):
-    lista_ordenada = []
-    while lista:
-        maior_elemento = encontrar_maior_elemento(lista)
-        lista_ordenada.append(maior_elemento)
-        lista.remove(maior_elemento)
-    return lista_ordenada
-#------------------------------#
-#------------------------------#
-
-def encontrar_menor_elemento(lista):
-    menor = lista[0]
-    for elemento in lista:
-        if elemento < menor:
-            menor = elemento
-    return menor
-
-def ordenacao_crescente(lista):
-    lista_ordenada = []
-    while lista:
-        menor_elemento = encontrar_menor_elemento(lista)
-        lista_ordenada.append(menor_elemento)
-        lista.remove(menor_elemento)
-    return lista_ordenada
-#------------------------------#
-#------------------------------#
 
 def separadora(arrey):
 
@@ -619,4 +386,3 @@ def separadora(arrey):
     return indice
 #------------------------------#
 #------------------------------#
-
