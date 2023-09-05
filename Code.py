@@ -8,7 +8,7 @@ import sys
 
 
 # Função Principal
-def Simulação(população_inicial,Geração_Final):
+def Simulação(população_inicial,Geração_Final,Condição):
     global Escolhida
     global escolhido
     global identificação_individual
@@ -19,6 +19,12 @@ def Simulação(população_inicial,Geração_Final):
     global homens
     global homens_que_reproduziram
 
+    if Condição == 1:
+        pass
+    
+    if Condição == 2:
+        pass
+        
     """
         A variável 'lista_de_identificação' contém CADA pessoa que já  existiu
         e perceba que a posição de cada pessoa na lista 'lista_de_identificação' coincide 
