@@ -86,38 +86,66 @@ def População_inicial(a):
 
 #-------------------------------------------------------------------------
 
-def Reprodução(mãe1, mãe2):
-         
-        lista = [] 
-        
-        global filha1, filha2, filha3, filha4
-        global filha5, filha6,filha7, filha8
-        global filha9, filha10, filha11, filha12
-  
-        
-        filha1,filha2,filha3,filha4 = Mistura(mãe1, mãe2)
-         
-        lista = lista + [filha1, filha2,filha3,filha4]   
 
-        filha5,filha6 = filha1.copy(),filha2.copy()
-        filha7,filha8 = filha3.copy(),filha4.copy()
+def Reprodução(mãe1, mãe2,ponto_corte):
+    
+
+    filha1, filha2, filha3,filha4,filha5,filha6,filha7,filha8,filha9,filha10,filha11,filha12,filha13,filha14 = mix(mãe1, mãe2,ponto_corte)
             
-        mutação_Obrigatória(filha5)
-        mutação_Obrigatória(filha6)
-        mutação_Obrigatória(filha7)
-        mutação_Obrigatória(filha8)
+    lista =         [filha1, filha2, filha3, filha4]
+    lista = lista + [filha5, filha6, filha7, filha8]
+    lista = lista + [filha9,filha10,filha11,filha12]
+    lista = lista + [filha13,filha14]
 
-        lista = lista + [filha5, filha6]
-        lista = lista + [filha7, filha8]
+    filha15,filha16 = filha1.copy(),filha2.copy()
+    filha17,filha18 = filha3.copy(),filha4.copy()
+    filha19,filha20 = filha5.copy(),filha6.copy()
+    filha21,filha22 = filha7.copy(),filha8.copy()
+    filha23, filha24 = filha9.copy(),filha10.copy()
+    filha25, filha26 = filha11.copy(),filha12.copy()
+    filha27, filha28 = filha13.copy(),filha14.copy()
+    
+    mutação_Obrigatória(filha15)
+    mutação_Obrigatória(filha16)
+    mutação_Obrigatória(filha17)
+    mutação_Obrigatória(filha18)
+    mutação_Obrigatória(filha19)
+    mutação_Obrigatória(filha20)
+    mutação_Obrigatória(filha21)
+    mutação_Obrigatória(filha22)
+    mutação_Obrigatória(filha23)
+    mutação_Obrigatória(filha24)
+    mutação_Obrigatória(filha25)
+    mutação_Obrigatória(filha26)
+    mutação_Obrigatória(filha27)
+    mutação_Obrigatória(filha28)
 
-        filha9  = Possivel_mutação(filha1)
-        filha10 = Possivel_mutação(filha2)
-        filha11 = Possivel_mutação(filha3)
-        filha12 = Possivel_mutação(filha4)
+    lista = lista + [filha15, filha16,filha17,filha18]
+    lista = lista + [filha19, filha20,filha21,filha22]
+    lista = lista + [filha23, filha24,filha25,filha26]
+    lista = lista + [filha27,filha28]
+
+    filha29 = Possivel_mutação(filha1)
+    filha30 = Possivel_mutação(filha2)
+    filha31 = Possivel_mutação(filha3)
+    filha32 = Possivel_mutação(filha4)
+    filha33 = Possivel_mutação(filha5)
+    filha34 = Possivel_mutação(filha6)
+    filha35 = Possivel_mutação(filha7)
+    filha36 = Possivel_mutação(filha8)
+    filha37 = Possivel_mutação(filha9)
+    filha38 = Possivel_mutação(filha10)
+    filha39 = Possivel_mutação(filha11)
+    filha40 = Possivel_mutação(filha12)
+    filha41 = Possivel_mutação(filha13)
+    filha42 = Possivel_mutação(filha14)
+
+    lista = lista + [filha29, filha30,filha31,filha32]
+    lista = lista + [filha33, filha34,filha35,filha36]
+    lista = lista + [filha37, filha38,filha38,filha40]
+    lista = lista + [filha41, filha42]
         
-        lista = lista + [filha9, filha10,filha11,filha12]
-        
-        return ramdom.choice(lista)
+    return ramdom.choice(lista)
 
 #-------------------------------------------------------------------------------#
 
