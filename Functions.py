@@ -1,6 +1,11 @@
+import time
+from decimal import Decimal
 import random
+from decimal import Decimal
 from math import *
+import random
 import matplotlib.pyplot  as pl
+import sys 
 
 
 global MÃE_de_todas
@@ -76,10 +81,65 @@ def População_inicial(a):
     Z = População_atual[r-1][3]
 
     return População_atual
+#-----------------------------#
+def Unir_digitos(lista):
+    A = ''
+    #print("lista",lista)
+    sinal = int(lista[0])
+    for i in lista:
+        i = str(i)
+        A = A + i
+   
+    B = f"{A[1:digitos_inteiro + 1]}.{A[digitos_inteiro + 1:]}"
 
+    número = (-1) ** sinal *Decimal(B)
+    return número
+
+#-----------------------------#
 
 #-------------------------------------------------------------------------------#
+def média_Aptidões_dentro_do_logaritimo_de_base_2():
+    #total_aptidão = sum(Decimal(Aptidão(individuo)) for individuo in POPULAÇÃO)
+    
+    total_aptidão = Decimal(0)
+    for individua in POPULAÇÃO:
+        total_aptidão += Decimal(Aptidão(individua))
+
+    média = Decimal(log2(Decimal(total_aptidão)/len(POPULAÇÃO)))
+    
+    if média <0:
+        média = -média
+    
+    return média
+
+# Função para realizar a mutação em um indivíduo
+def mutacao(individuo):
+    for i in range(num_genes):
+        if random.random() < taxa_mutacao:
+            individuo[i] = 1 - individuo[i]
 #-------------------------------------------------------------------------------#
+def inicializar_populacao():
+    populacao = []
+    for i in range(tamanho_população_inicial):
+        individuo = [random.randint(0, 1) for i in range(num_genes)]
+        populacao.append(individuo)
+    print(individuo)
+    return populacao
+def base4_para_base10(numero):
+    letras = ['A', 'C', 'G', 'T']
+    resultado = 0
+    if numero.startswith('A'):
+        negativo = True
+        numero = numero[1:]
+    if numero.startswith('C'):
+        negativo = False
+        numero = numero[1:]
+    for i in range(len(numero)):
+        digito = letras.index(numero[i])
+        resultado += digito * (4 ** (len(numero) - i - 1))
+    if negativo:
+        resultado *= -1
+    return resultado
 
 # mãe1, mãe2,ponto_corte
 def Reprodução(arrey):
@@ -150,10 +210,116 @@ def Reprodução(arrey):
 
       if len(arrey) < 3:
 
+lista_de_funcoes = [
+                     seleção, seleção_B,
+                     min, max, random.choice,
+                     seleção_media_B,seleção_media
+                    ]
+#-----------------------------#
+#-----------------------------#
+Point_Corte = num_genes/2
+        repetição = 1
+        Semi_Principal(Point_Corte,repetição,Aptidão,POPULAÇÃO,lista_de_funcoes)
+def Semi_Principal(PC,P,Aptidao,Population,lista):
 
+    # PC é o ponto de corte
+
+    n = len(lista)
+
+    for i in range(n):
+    
+        for w in range(i,n):
+    
+            for z in range(0,P):
+        
+                if lista[i] == min or \
+                   lista[i] == max:
+                       mãe1 = lista[i](Population,key=Aptidao)
+                else:
+                    mãe1 = lista[i](Population)
+
+                if lista[w] == min or \
+                   lista[w] == max:
+                       mãe2 = lista[w](Population,key=Aptidao)
+                else:
+                    mãe2 = lista[w](Population)
+                
+                Reprodução(mãe1,mãe1,PC)
 
 
 #-------------------------------------------------------------------------------#
+def mistura_Dna(A,B,ponto_Corte):
+    
+    ponto_Corte = int(ponto_Corte)
+    #print("ponto_Corte",ponto_Corte,type(ponto_Corte))
+    C = A.copy()
+    D = B.copy()
+
+    A = C[:ponto_Corte]
+    B = D[:ponto_Corte]
+    
+  
+    filha1 = A + B
+    #print("/filha1",filha1)
+    B = D[ponto_Corte:]
+    
+    filha2 = A + B
+    #print("/filha2",filha2)    
+    A = C[ponto_Corte:]
+    B = D[:ponto_Corte]
+    
+    filha3 = A + B
+    #print("/filha3",filha3)
+    
+    B = D[ponto_Corte:]
+    
+    filha4 = A + B
+    #print("/filha4",filha4)
+    A = C[:ponto_Corte]
+    B = D[:ponto_Corte]
+    
+    filha5 =  B + A
+    #print("/filha5",filha5)
+    
+    A = C[ponto_Corte:]
+    
+    filha6 = B + A
+    #print("/filha6",filha6)
+    
+    A = C[:ponto_Corte]
+    B = D[ponto_Corte:]
+    
+    filha7 = B +  A
+
+    #print("/filha7",filha7)
+    A = C[ponto_Corte:]
+    
+    filha8 = B +  A
+    #print("/filha8",filha8)
+    """print("filha1",filha1)
+    print("filha2",filha2)
+    print("filha3",filha3)
+    print("filha4",filha4)
+    print("filha5",filha5)
+    print("filha6",filha6)
+    print("filha7",filha7)
+    print("filha8",filha8)"""
+    
+    Ç = [ filha1, filha2, filha3, filha4,
+         filha5, filha6, filha7, filha8 ]
+    
+    
+    for i in Ç:
+        if len(Ç) != 8:
+            print("Error: ")
+            
+    
+    return filha1, filha2, \
+           filha3, filha4,  \
+           filha5, filha6,   \
+           filha7, filha8     \
+
+# -----------------------------#
 #-------------------------------------------------------------------------------#
 def Dna(v):
     B   = [0,1,2,3]
@@ -360,6 +526,94 @@ def mix(individua1, individua2,ponto_corte):
            filha8, filha9, filha10, filha11, filha12, filha13, filha14
 
 #-----------------------------#
+def calcular_total_aptidao(populacao):
+    total_aptidao = 0
+    for individuo in populacao:
+        total_aptidao += Decimal(Aptidão(individuo))
+    return total_aptidao
+
+def seleção(populção):
+    total_aptidão = calcular_total_aptidao(populção)
+    escolhido = random.uniform(0, float(total_aptidão))  # Convertendo para float
+    acumulado = 0
+
+    for individuo in populção:
+        aptidão_individuo = Aptidão(individuo)
+        acumulado += aptidão_individuo
+
+        if acumulado >= escolhido:
+            return individuo
+def seleção_B(populção):
+    total_aptidão = calcular_total_aptidao(populção)
+    escolhido = random.uniform(0, float(total_aptidão))  # Convertendo para float
+    acumulado = 0
+
+    for individuo in populção:
+        aptidão_individuo = Aptidão(individuo)
+        acumulado -= aptidão_individuo
+
+        if acumulado <= escolhido:
+            return individuo
+
+def encontrar_maior_elemento(lista):
+    maior = lista[0]
+    for elemento in lista:
+        if elemento > maior:
+            maior = elemento
+    return maior
+
+def ordenacao_decrescente(lista):
+    lista_ordenada = []
+    while lista:
+        maior_elemento = encontrar_maior_elemento(lista)
+        lista_ordenada.append(maior_elemento)
+        lista.remove(maior_elemento)
+    return lista_ordenada
+
+def encontrar_menor_elemento(lista):
+    menor = lista[0]
+    for elemento in lista:
+        if elemento < menor:
+            menor = elemento
+    return menor
+
+def ordenacao_crescente(lista):
+    lista_ordenada = []
+    while lista:
+        menor_elemento = encontrar_menor_elemento(lista)
+        lista_ordenada.append(menor_elemento)
+        lista.remove(menor_elemento)
+    return lista_ordenada
+#-----------------------------#
+#-----------------------------#
+
+def separadora(arrey):
+
+    if len(arrey) % 2 == 0:
+        indice = int(len(arrey) / 2)
+    else:
+        indice = int(len(arrey) // 2 --1)
+
+    return indice
+
+
+def minima(Z):
+    Z = POPULAÇÃO
+    for i in range(len(POPULAÇÃO)):
+        ind = (Unir_digitos(POPULAÇÃO[i]))
+        individuas.append(ind)
+        A = Aptidão(ind)
+        Aptidão.appen(A)
+def Possivel_mutação(individua):
+    for i in range(len(individua)):
+        if random.random() < taxa_mutacao:
+            individua[i] = random.randint(0, 9)
+    return individua
+
+def mutação_Obrigatória(individua):
+    for i in range(len(individua)):
+        individua[i] = random.randint(0, 9)
+    return individua
 #-----------------------------#
 def Possivel_mutação(individua):
     for i in range(len(individua)):
@@ -372,6 +626,20 @@ def mutação_Obrigatória(individua):
         individua[i] = random.randint(0, 9)
     return individua
 # -----------------------------#
+# Função de Aptidão
+def Aptidão(individua):
+    
+    x = Unir_digitos(individua)
+    
+    valor = Decimal(  x ** 1 )
+    
+    aptidao =  valor - Decimal(objetivo)   
+    
+    if  aptidao < 0:
+        aptidao = -aptidao
+    
+    return Decimal(aptidao/Decimal(1E-9))
+    
 # -----------------------------#
 
 
